@@ -9,7 +9,6 @@ const youtubei = require("youtubei");
 const youtube = new youtubei.Client();
 const kermManager = new Manager({
     send: (id, payload) => {
-        console.log(id)
         const guild = client.guilds.get(id);
         if(guild) guild.shard.sendWS(payload.op, payload.d);
     },
