@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "eris": "^0.15.1",
+    "kerm.js": "github:KagChi/kerm.js",
+    "youtubei": "^0.0.1-rc.14"
+  },
+  "scripts": {
+    "start": "node -r dotenv/config src"
+  }
+}
