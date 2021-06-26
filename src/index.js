@@ -27,7 +27,11 @@ client.on('messageCreate', async (message) => {
     switch(command) {
         case 'join': {
             if(!message.member.voiceState.channelID) message.channel.createMessage("please join a voice channel.")
-            kermManager.nodes.get('node-1').postSubscription({ userId: client.user.id, guildId: message.guildID, channelId: message.member.voiceState.channelID })
+            const player = kermManager.create({
+                channelId: message.member.voiceState.channelID,
+                guildId: message.guildID
+            })
+            player.connect()
             message.channel.createMessage('joined voice channel.');
             break;
         }
@@ -36,7 +40,7 @@ client.on('messageCreate', async (message) => {
             const videos = await youtube.search(args.join(" "), {
                 type: "video",
             });
-            kermManager.nodes.get('node-1').postTrack({ userId: client.user.id, guildId: message.guildID, track: 'https://youtube.com/watch?v=' + videos[0].id })
+            kermManager.players.get(message.guildID).playTrack('https://youtube.com/watch?v=' + videos[0].id)
             break;
         }
     }
